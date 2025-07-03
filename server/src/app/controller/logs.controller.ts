@@ -23,7 +23,7 @@ export default class LogsController {
       } = req.body; 
 
       if (!level || !message || !resourceId || !timestamp || !traceId || !spanId || !commit) {
-        return res.status(400).json({ message: "Invalid request body" });
+         res.status(400).json({ message: "Invalid request body" });
       }
 
       const response = await this.logService.createLog({
@@ -36,13 +36,13 @@ export default class LogsController {
         commit,
         metadata,
       });
-       const io = req.app.get('io'); // 🎯 emit to all
+       const io = req.app.get('io'); 
     if (response.status === StatusCode.Created) {
       io.emit('new_log', req.body);
     }
 
 
-      return res.status(response.status).json({ message: response.message });
+       res.status(response.status).json({ message: response.message });
 
     } catch (error) {
       console.log("Error occurred while posting logs", error);

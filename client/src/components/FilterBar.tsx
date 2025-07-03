@@ -1,7 +1,14 @@
 import { Calendar, Filter, Search, Server, Trash2 } from "lucide-react";
+import type { ILogFilters } from "../types/ILogs";
 
-const FilterBar = ({ filters, setFilters }) => {
-  const handleChange = (e) => {
+
+interface FilterBarProps {
+  filters: ILogFilters;
+  setFilters: React.Dispatch<React.SetStateAction<ILogFilters>>;
+}
+
+const FilterBar = ({ filters, setFilters }:FilterBarProps) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFilters({ ...filters, [e.target.name]: e.target.value });
   };
 

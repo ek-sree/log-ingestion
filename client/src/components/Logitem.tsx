@@ -9,6 +9,11 @@ import {
   Clock,
   Database,
 } from 'lucide-react';
+import type { ILogData } from '../types/ILogs';
+
+interface LogItemProps {
+  log: ILogData;
+}
 
 
 const levelConfig = {
@@ -35,11 +40,11 @@ const levelConfig = {
 };
 
 
-const LogItem = ({ log }) => {
+const LogItem = ({ log }:LogItemProps) => {
   const config = levelConfig[log.level];
   const IconComponent = config.icon;
   
-  const formatTimestamp = (timestamp) => {
+  const formatTimestamp = (timestamp:string) => {
     return new Date(timestamp).toLocaleString();
   };
 

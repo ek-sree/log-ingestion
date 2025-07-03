@@ -3,7 +3,7 @@ import cors from 'cors';
 import config from './config/index.js';
 import logsRouter from './app/router/logs.router.js';
 import { createServer } from 'http';
-import { Server } from 'socket.io';
+import { Server, Socket } from 'socket.io';
 
 
 const app = express();
@@ -34,7 +34,7 @@ app.set('io', io);
 app.use('/api/logs', logsRouter)
 
 
-io.on('connection', (socket) => {
+io.on('connection', (socket:Socket) => {
   console.log('✅ Socket connected:', socket.id);
 
   socket.on('disconnect', () => {

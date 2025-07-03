@@ -12,8 +12,7 @@ This project simulates a real-world logging system used by developers for debugg
 ====================================
 
 1. Clone the Repository
-git clone https://github.com/your-username/log-system.git
-cd log-system
+git clone [https://github.com/your-username/log-system.git](https://github.com/ek-sree/log-ingestion.git)
 
 2. Set up Environment Variables
 
@@ -28,13 +27,13 @@ CORS_KEY=http://localhost:5173
 
 3. Start the Backend
 cd server
-npm install
-npm run dev
+```npm install```
+```npm run dev```
 
 4. Start the Frontend
 cd client
-npm install
-npm run dev
+```npm install```
+```npm run dev```
 
 ====================================
 📁 Folder Structure
@@ -55,7 +54,7 @@ Frontend - client/
 client/
 ├── src/
 │   ├── components/             → UI components (FilterBar, LogItem, etc.)
-│   ├── service/                → Custom hooks (useFetchLogs, useDebounce)
+│   ├── service/                → Custom hooks (useFetchLogs, usePostLogs)
 │   └── api/
 │       ├── axios/              → Axios instance
 │       └── endpoints/          → API endpoint paths
@@ -74,10 +73,10 @@ client/
 🌐 API Endpoints
 ====================================
 
-POST /api/logs
+POST /api/logs/logs
 → Accepts a log object matching the defined schema and stores it in log.json
 
-GET /api/logs
+GET /api/logs/logs
 → Supports filtering by:
    - level (error, warn, info, debug)
    - message (full-text search)
@@ -85,7 +84,6 @@ GET /api/logs
    - timestamp_start and timestamp_end
    - traceId, spanId, commit
 
-Returns logs sorted in reverse chronological order.
 
 ====================================
 📦 Tech Stack
@@ -107,20 +105,35 @@ Backend:
 ====================================
 📄 Sample Log Schema
 ====================================
-
+```
 {
-  "level": "error",
-  "message": "Failed to connect to DB",
-  "resourceId": "server-1234",
-  "timestamp": "2023-09-15T08:00:00Z",
-  "traceId": "abc-xyz-123",
-  "spanId": "span-456",
-  "commit": "5e5342f",
-  "metadata": {
-    "parentResourceId": "server-5678"
+    "level": "debug",
+    "message": "userId is undefined",
+    "resourceId": "server-3114",
+    "timestamp": "2025-09-02T12:30:00Z",
+    "traceId": "abc-xyz-222",
+    "spanId": "span-011",
+    "commit": "6b3f54g",
+    "metadata": {
+      "userId": "server-0032"
+    }
   }
-}
-
+```
+```
+{
+    "level": "info",
+    "message": "User login successful",
+    "resourceId": "auth-service-001",
+    "timestamp": "2025-09-02T13:15:00Z",
+    "traceId": "trace-1892",
+    "spanId": "span-104",
+    "commit": "a1f2d3g",
+    "metadata": {
+      "userId": "user-1234",
+      "ip": "192.168.0.15"
+    }
+  }
+```
 ====================================
 📌 Notes & Design Decisions
 ====================================

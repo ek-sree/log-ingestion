@@ -4,9 +4,7 @@ services:
   client:
     build: ./client
     ports:
-      - "5173:80"
-    volumes:     # only development mode without build again when any changes done in code, I need to remove this on production mode.
-      - ./client:/app 
+      - "5173:80" 
     depends_on:
       - server
     networks:
@@ -17,7 +15,6 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ./server:/app  # only development mode without build again when any changes done in code, I need to remove this on production mode.
       - ./server/logs/log.json:/app/logs/log.json
     networks:
       - lognet

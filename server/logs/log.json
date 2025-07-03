@@ -1,0 +1,114 @@
+[
+  {
+    "level": "debug",
+    "message": "userId is undefined",
+    "resourceId": "server-3114",
+    "timestamp": "2025-09-02T12:30:00Z",
+    "traceId": "abc-xyz-222",
+    "spanId": "span-011",
+    "commit": "6b3f54g",
+    "metadata": {
+      "userId": "server-0032"
+    }
+  },
+  {
+    "level": "warn",
+    "message": "Disk space usage exceeds 80%",
+    "resourceId": "monitor-545",
+    "timestamp": "2025-09-02T13:45:00Z",
+    "traceId": "trace-4521",
+    "spanId": "span-208",
+    "commit": "bd9e7a2",
+    "metadata": {
+      "disk": "/dev/sda1",
+      "usage": "82%"
+    }
+  },
+  {
+    "level": "error",
+    "message": "Failed to connect to MongoDB",
+    "resourceId": "db-service-902",
+    "timestamp": "2025-09-02T14:05:00Z",
+    "traceId": "trace-7777",
+    "spanId": "span-332",
+    "commit": "f88c29d",
+    "metadata": {
+      "env": "production",
+      "retryCount": 3
+    }
+  },
+  {
+    "level": "info",
+    "message": "New user registered",
+    "resourceId": "user-service-205",
+    "timestamp": "2025-09-02T14:30:00Z",
+    "traceId": "trace-1002",
+    "spanId": "span-105",
+    "commit": "ddc1131",
+    "metadata": {
+      "email": "john@example.com"
+    }
+  },
+  {
+    "level": "warn",
+    "message": "API rate limit exceeded",
+    "resourceId": "gateway-22",
+    "timestamp": "2025-09-02T14:45:00Z",
+    "traceId": "trace-3333",
+    "spanId": "span-777",
+    "commit": "29fa611",
+    "metadata": {
+      "ip": "172.16.254.1",
+      "limit": "1000"
+    }
+  },
+  {
+    "level": "debug",
+    "message": "Cache miss for key: user_profile_987",
+    "resourceId": "cache-service",
+    "timestamp": "2025-09-02T15:00:00Z",
+    "traceId": "trace-1992",
+    "spanId": "span-888",
+    "commit": "9bd45dd",
+    "metadata": {
+      "key": "user_profile_987"
+    }
+  },
+  {
+    "level": "error",
+    "message": "Payment gateway timeout",
+    "resourceId": "payment-service",
+    "timestamp": "2025-09-02T15:15:00Z",
+    "traceId": "trace-0102",
+    "spanId": "span-200",
+    "commit": "ed884a1",
+    "metadata": {
+      "orderId": "ORD-98721",
+      "timeout": "15s"
+    }
+  },
+  {
+    "level": "info",
+    "message": "Background job completed",
+    "resourceId": "worker-service",
+    "timestamp": "2025-09-02T15:30:00Z",
+    "traceId": "trace-5566",
+    "spanId": "span-300",
+    "commit": "adc112f",
+    "metadata": {
+      "jobId": "job-123"
+    }
+  },
+  {
+    "level": "warn",
+    "message": "Deprecated API usage detected",
+    "resourceId": "legacy-api",
+    "timestamp": "2025-09-02T15:45:00Z",
+    "traceId": "trace-7854",
+    "spanId": "span-987",
+    "commit": "c1b1a45",
+    "metadata": {
+      "endpoint": "/v1/old-login"
+    }
+  }
+]

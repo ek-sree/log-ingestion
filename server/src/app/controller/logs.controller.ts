@@ -50,13 +50,28 @@ export default class LogsController {
     }
   };
 
-  getLogs = async (req:Request, res:Response)=>{
-    try {
-        const response = await this.logService.getLogs();
-        res.status(response.status).json({message:response.message,data:response.data});
-    } catch (error) {
-        console.log("Error occured while getting logs",error);
-        res.status(StatusCode.InternalServerError).json({message:"Internal server error"})
-    }
+getLogs = async (req: Request, res: Response) => {
+  try {
+    const { message, level, resourceId, timestamp_start, timestamp_end, page = 1, limit = 5 } = req.query;
+console.log("api call limit");
+
+    const filters = {
+      message: message?.toString() || '',
+      level: level?.toString() || '',
+      resourceId: resourceId?.toString() || '',
+      timestamp_start: timestamp_start?.toString() || '',
+      timestamp_end: timestamp_end?.toString() || '',
+      page: Number(page),
+      limit: Number(limit),
+    };
+
+    const response = await this.logService.getLogs(filters);
+
+    res.status(response.status).json({ message: response.message, data: response.data });
+  } catch (error) {
+    console.log("Error occurred while getting logs", error);
+    res.status(StatusCode.InternalServerError).json({ message: "Internal server error" });
   }
+};
+
 }

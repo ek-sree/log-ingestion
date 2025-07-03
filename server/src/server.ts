@@ -30,15 +30,16 @@ app.set('io', io);
     optionsSuccessStatus: 204 
   }));
   
+
 // Routes
 app.use('/api/logs', logsRouter)
 
 
 io.on('connection', (socket:Socket) => {
-  console.log('✅ Socket connected:', socket.id);
+  console.log('Socket connected:', socket.id);
 
   socket.on('disconnect', () => {
-    console.log('❌ Socket disconnected:', socket.id);
+    console.log('Socket disconnected:', socket.id);
   });
 })
 

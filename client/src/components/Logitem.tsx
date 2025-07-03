@@ -1,8 +1,4 @@
 import { 
-  AlertCircle, 
-  AlertTriangle, 
-  Info, 
-  Bug, 
   Server,
   Hash,
   GitCommit,
@@ -10,44 +6,19 @@ import {
   Database,
 } from 'lucide-react';
 import type { ILogData } from '../types/ILogs';
+import { levelConfig } from '../constant/data';
+import { formatTimestamp } from '../utils/formateTimestamp';
 
 interface LogItemProps {
   log: ILogData;
 }
 
 
-const levelConfig = {
-  error: { 
-    color: 'border-red-500 bg-gradient-to-r from-red-50 to-red-100 text-red-900',
-    badge: 'bg-red-500 text-white',
-    icon: AlertCircle
-  },
-  warn: { 
-    color: 'border-amber-500 bg-gradient-to-r from-amber-50 to-amber-100 text-amber-900',
-    badge: 'bg-amber-500 text-white',
-    icon: AlertTriangle
-  },
-  info: { 
-    color: 'border-blue-500 bg-gradient-to-r from-blue-50 to-blue-100 text-blue-900',
-    badge: 'bg-blue-500 text-white',
-    icon: Info
-  },
-  debug: { 
-    color: 'border-gray-500 bg-gradient-to-r from-gray-50 to-gray-100 text-gray-900',
-    badge: 'bg-gray-500 text-white',
-    icon: Bug
-  },
-};
-
-
 const LogItem = ({ log }:LogItemProps) => {
   const config = levelConfig[log.level];
   const IconComponent = config.icon;
   
-  const formatTimestamp = (timestamp:string) => {
-    return new Date(timestamp).toLocaleString();
-  };
-
+ 
   return (
     <div className={`relative overflow-hidden rounded-xl border-l-4 ${config.color} p-6 shadow-sm hover:shadow-md transition-all duration-200 transform hover:scale-[1.01]`}>
       <div className="flex items-start justify-between mb-4">

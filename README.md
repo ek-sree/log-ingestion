@@ -151,3 +151,12 @@ Backend:
 
 To run everything with Docker:
 docker-compose up --build
+
+Sample screenshot of UI
+
+![Screenshot (441)](https://github.com/user-attachments/assets/d9499d19-06e8-4275-b54a-7d64116808ce)
+![Screenshot (442)](https://github.com/user-attachments/assets/01a2509e-0055-4729-b626-a3897e2993d4)
+![Screenshot (443)](https://github.com/user-attachments/assets/ea18d56d-05d9-44bc-9284-05e75579c87c)
+
+
+

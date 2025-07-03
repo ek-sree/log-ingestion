@@ -4,6 +4,8 @@ import { LOG_ENDPOINTS } from "../api/endpoints/LogEndpoints";
 import type { ILogData, ILogFilters } from "../types/ILogs";
 import socket from "../sockets/socket";
 
+const LIMIT = 5;
+
 const useFetchLogs = (filters: ILogFilters) => {
   const [logs, setLogs] = useState<ILogData[]>([]);
   const [page, setPage] = useState(1);
@@ -11,18 +13,27 @@ const useFetchLogs = (filters: ILogFilters) => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const fetchLogs = async (newPage: number) => {
+  const fetchLogs = async (newPage: number, reset = false) => {
     try {
       setLoading(true);
-      const params = { ...filters, page: newPage, limit: 5 };
+      const params = { ...filters, page: newPage, limit: LIMIT };
 
       const response = await Axios.get(`${LOG_ENDPOINTS.GET_LOGS}`, { params });
       const newLogs = response.data.data;
 
-      if (newLogs.length === 0) {
-        setHasMore(false);
+      if (reset) {
+        setLogs(newLogs);
       } else {
         setLogs(prev => [...prev, ...newLogs]);
+      }
+
+      setPage(newPage);
+
+      // Checking if more data is available
+      if (newLogs.length < LIMIT) {
+        setHasMore(false);
+      } else {
+        setHasMore(true);
       }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -33,9 +44,10 @@ const useFetchLogs = (filters: ILogFilters) => {
     }
   };
 
-      useEffect(() => {
+  //  socket real time updates
+  useEffect(() => {
     socket.on("new_log", (newLog: ILogData) => {
-      setLogs((prev) => [newLog, ...prev]);
+      setLogs(prev => [newLog, ...prev]);
     });
 
     return () => {
@@ -43,19 +55,19 @@ const useFetchLogs = (filters: ILogFilters) => {
     };
   }, []);
 
-
+  // Refetch when filters change
   useEffect(() => {
-    setLogs([]);
-    setPage(1);
-    setHasMore(true);
-    fetchLogs(1);
+    const resetAndFetch = async () => {
+      setHasMore(true);
+      await fetchLogs(1, true);
+    };
+    resetAndFetch();
   }, [filters]);
 
+  // Load more logs for thenext page
   const loadMore = () => {
     if (!loading && hasMore) {
-      const nextPage = page + 1;
-      setPage(nextPage);
-      fetchLogs(nextPage);
+      fetchLogs(page + 1);
     }
   };
 

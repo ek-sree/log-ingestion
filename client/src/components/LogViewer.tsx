@@ -23,7 +23,7 @@ const LogViewer = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting && hasMore) {
+        if (entries[0].isIntersecting && hasMore && !loading) {
           loadMore();
         }
       },
@@ -38,7 +38,7 @@ const LogViewer = () => {
     return () => {
       if (target) observer.unobserve(target);
     };
-  }, [hasMore, loadMore]);
+  }, [hasMore, loadMore, loading]);
 
   if (error) return <ErrorPage />;
 

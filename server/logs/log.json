@@ -12,6 +12,19 @@
     }
   },
   {
+    "level": "info",
+    "message": "User login successful",
+    "resourceId": "auth-service-001",
+    "timestamp": "2025-09-02T13:15:00Z",
+    "traceId": "trace-1892",
+    "spanId": "span-104",
+    "commit": "a1f2d3g",
+    "metadata": {
+      "userId": "user-1234",
+      "ip": "192.168.0.15"
+    }
+  },
+  {
     "level": "warn",
     "message": "Disk space usage exceeds 80%",
     "resourceId": "monitor-545",
@@ -109,6 +122,18 @@
     "commit": "c1b1a45",
     "metadata": {
       "endpoint": "/v1/old-login"
+    }
+  },
+  {
+    "level": "error",
+    "message": "JWT token expired",
+    "resourceId": "auth-service",
+    "timestamp": "2025-09-02T17:45:00Z",
+    "traceId": "trace-1212",
+    "spanId": "span-4567",
+    "commit": "ee11cc2",
+    "metadata": {
+      "userId": "user-789"
     }
   }
 ]
